@@ -9,7 +9,7 @@ def save_new_product_item(data):
         desc=data['desc'],
         price=data['price'],
         available=data['available'],
-        vendorId=data['vendor_id'],
+        vendorId=data['vendorId'],
     )
     save_changes(new_product_item)
     return new_product_item
@@ -19,11 +19,11 @@ def update_product_item(data,id):
     product_item = ProductItem.query.filter_by(id=id).first()
     if product_item:
         product_item.name=data['name'],
-        product_itme.url=data['url'],
+        product_item.url=data['url'],
         product_item.desc=data['desc'],
         product_item.price=data['price'],
         product_item.available=data['available'],
-        product_item.vendor_id=data['vendor_id'],
+        product_item.vendorId=data['vendorId'],
         update_changes()
         return product_item
 
@@ -39,7 +39,11 @@ def get_all_product_items():
     return ProductItem.query.all()
 
 def get_all_vendor_product_items(vendor_id):
-    return ProductItem.query.filter_by(vendor_id=vendor_id).all()
+    return ProductItem.query.filter_by(vendorId=vendor_id).all()
+
+def get_all_cart_product_items(product_ids):
+    result = [int(i) for i in product_ids.split(',')]
+    return ProductItem.query.filter(ProductItem.id.in_(result)).all()
 
 def get_a_product_item(id):
     return ProductItem.query.filter_by(id=id).first()
