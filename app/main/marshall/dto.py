@@ -18,6 +18,8 @@ class CustomerDto:
     customer = api.model('customer', {
     'id':fields.Integer(description="The customer uuid"),
     'name': fields.String(required=True, description='The customer name '),
+    'fuid_email': fields.String(required=True, description='The customer fuid_email '),
+    'fuid_phone':fields.String(required=True,description="The customer fuid_phone"),
     'contact': fields.String(required=True, description='The customer contact'),
 	'address': fields.String(required=True, description='The customer address'),
     'longitude': fields.Float(required=True,description='The customer longitude'),
