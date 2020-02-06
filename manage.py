@@ -9,7 +9,7 @@ from app.main import create_app, db
 
 from app.main.model import customer,vendor,order,order_item,product_item
 
-app = create_app(os.getenv('BOILERPLATE_ENV') or 'dev')
+app = create_app(os.getenv('PROD_ENV') or 'dev')
 
 app.register_blueprint(blueprint)
 
