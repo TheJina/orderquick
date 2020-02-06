@@ -5,10 +5,11 @@ from app.main.model.product_item import ProductItem
 def save_new_product_item(data):
     new_product_item = ProductItem(
         name=data['name'],
-        description=data['description'],
+        url=data['url'],
+        desc=data['desc'],
         price=data['price'],
         available=data['available'],
-        vendor_id=data['vendor_id'],
+        vendorId=data['vendor_id'],
     )
     save_changes(new_product_item)
     return new_product_item
@@ -18,7 +19,8 @@ def update_product_item(data,id):
     product_item = ProductItem.query.filter_by(id=id).first()
     if product_item:
         product_item.name=data['name'],
-        product_item.description=data['description'],
+        product_itme.url=data['url'],
+        product_item.desc=data['desc'],
         product_item.price=data['price'],
         product_item.available=data['available'],
         product_item.vendor_id=data['vendor_id'],

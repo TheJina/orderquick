@@ -57,19 +57,22 @@ class ProductItemDto:
     api = Namespace('product_item', description='product_item related operations')
     addproduct_item = api.model('addproduct_item', {
     'name': fields.String(required=True, description='The product_item name '),
-    'description': fields.String(required=True, description='The product_item description'),
+    'desc': fields.String(required=True, description='The product_item description'),
     'price': fields.Float(required=True,description='The product_item price'),
+    'url': fields.String(required=True, description='The vendor url'),
     'available': fields.Boolean(required=True,description="The product_item available"),
-    'vendor_id':fields.Integer(required=True,desscription="The product_item vendor_id"),
+    'vendorId':fields.Integer(required=True,desscription="The product_item vendor_id"),
     })
 
     product_item = api.model('product_item', {
     'id':fields.Integer(description="The product_item uuid"),
     'name': fields.String(required=True, description='The product_item name '),
-    'description': fields.String(required=True, description='The product_item description'),
-    'available': fields.Boolean(required=True,description="The product_item available"),
+    'desc': fields.String(required=True, description='The product_item description'),
     'price': fields.Float(required=True,description='The product_item price'),
-    'vendor_id':fields.Integer(required=True,desscription="The product_item vendor_id"),
+    'url': fields.String(required=True, description='The vendor url'),
+    'available': fields.Boolean(required=True,description="The product_item available"),
+    'created_at':fields.DateTime(required=True,description="The product_item creation date"),
+    'vendorId':fields.Integer(required=True,desscription="The product_item vendor_id"),
     })
 
 class OrderDto:
