@@ -4,7 +4,7 @@ from sqlalchemy import or_
 
 
 def save_new_customer(data):
-    customer = Customer.query.filter(or_(Customer.fuid_email==id,Customer.fuid_phone==id)).first()
+    customer = Customer.query.filter_by(contact=data['contact']).first()
     if not customer:
         new_customer = Customer(
             name=data['name'],
@@ -18,6 +18,7 @@ def save_new_customer(data):
             geo = 'POINT({} {})'.format(data['longitude'],data['latitude']),
             location=data['location']
         )
+
         save_changes(new_customer)
         return new_customer
     else:
