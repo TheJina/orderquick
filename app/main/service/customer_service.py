@@ -4,7 +4,7 @@ from sqlalchemy import or_
 
 
 def save_new_customer(data):
-    customer = Customer.query.filter_by(contact=data['contact']).first()
+    customer = Customer.query.filter(or_(Customer.fuid_email==data["fuid_email"],Customer.fuid_phone==data["fuid_phone"])).first()
     if not customer:
         new_customer = Customer(
             name=data['name'],
