@@ -100,15 +100,21 @@ class OrderDto:
 
 class OrderItemDto:
     api = Namespace('order_item', description='order_item related operations')
-    
-    order_item = api.model('order_item', {
-    'id':fields.Integer(description="The order_item uuid"),
-    'order_id':fields.Integer(required=True,desscription="The order_item order_id"),
-    'product_item_id':fields.Integer(required=True,desscription="The order_item product_item_id"),
-    'quantity': fields.Integer(required=True, description='The order_item quantity '),
-    'name':fields.String(required=True,description="The order_item name"),
-    'description':fields.String(required=True,description="The order_item description"),
-    'price':fields.Float(required=True,description="The order_item price"),
-    'available':fields.Boolean(required=True,description="The order_item available"),
-    'vendor_id':fields.String(required=True,description="The order_item vendor_id")
+
+    add_order_item = api.model('order_item', {
+    'itemName':fields.String(required=True,desscription="The order_item product_item_id"),
+    'itemQty': fields.Integer(required=True, description='The order_item quantity '),
+    'itemDesc':fields.String(required=True,description="The order_item description"),
     })
+    
+    order_history = api.model('order_history', {
+    'orderId':fields.Integer(required=True,desscription="The order_item order_id"),
+    'vendorId':fields.String(required=True,description="The order_item vendor_id"),
+    'vendorName':fields.String(required=True,description="The vendor_name"),
+    'orderedAt':fields.DateTime(required=True,description="The vendor_name"),
+    'orderStatus':fields.String(required=True,description="The order status"),
+    'totalPrice':fields.Float(required=True,description="The total price"),
+    "items": fields.List(fields.Nested(add_order_item)),  
+    })
+
+
