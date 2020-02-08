@@ -35,7 +35,8 @@ def get_all_order_order_items(customer_id):
             totalPrice=0,
             items=[ dict(itemName=p.product_item.name,
                          itemQty=p.quantity,
-                         itemDesc=p.product_item.desc
+                         itemDesc=p.product_item.desc,
+                         itemPrice=p.product_item.price
                          ) for p in o.order_items])
                                for o , v in db.session.query(Order,Vendor).filter(Order.vendor_id == Vendor.id , Order.customer_id == customer_id).all() ]
     
