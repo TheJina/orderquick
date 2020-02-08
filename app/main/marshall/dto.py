@@ -105,6 +105,7 @@ class OrderItemDto:
     'itemName':fields.String(required=True,desscription="The order_item product_item_id"),
     'itemQty': fields.Integer(required=True, description='The order_item quantity '),
     'itemDesc':fields.String(required=True,description="The order_item description"),
+    'itemPrice':fields.String(required=True,description="The order_item price"),
     })
     
     order_history = api.model('order_history', {
