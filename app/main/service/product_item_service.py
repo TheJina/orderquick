@@ -1,6 +1,6 @@
 from app.main import db
 from app.main.model.product_item import ProductItem
-
+from sqlalchemy import and_
 
 def save_new_product_item(data):
     new_product_item = ProductItem(
@@ -44,6 +44,9 @@ def get_all_vendor_product_items(vendor_id):
 def get_all_cart_product_items(product_ids):
     result = [int(i) for i in product_ids.split(',')]
     return ProductItem.query.filter(ProductItem.id.in_(result)).all()
+
+def get_query_vendor_product_items(vendor_id,query):
+    return ProductItem.query.filter(and_(ProductItem.name.like('%'+query+'%'),ProductItem.vendorId==vendor_id)).all()
 
 def get_a_product_item(id):
     return ProductItem.query.filter_by(id=id).first()

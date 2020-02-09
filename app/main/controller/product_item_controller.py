@@ -1,7 +1,7 @@
 from flask import request
 from flask_restx import Resource
 from ..marshall.dto import ProductItemDto
-from ..service.product_item_service import save_new_product_item, get_all_product_items, get_all_vendor_product_items, get_a_product_item, update_product_item, delete_a_product_item,get_all_cart_product_items
+from ..service.product_item_service import save_new_product_item, get_all_product_items, get_all_vendor_product_items, get_a_product_item, update_product_item, delete_a_product_item,get_all_cart_product_items,get_query_vendor_product_items
 
 api = ProductItemDto.api
 addproduct_item = ProductItemDto.addproduct_item
@@ -10,12 +10,15 @@ product_item = ProductItemDto.product_item
 
 @api.route('/')
 class ProductItemList(Resource):
-    @api.doc('list_of_registered_product_items',params={'vendor_id':'Provide Vendor Id','product_ids':"Provide list of Product Ids in '1,4,5,6' format"})
+    @api.doc('list_of_registered_product_items',params={'vendor_id':'Provide Vendor Id','product_ids':"Provide list of Product Ids in '1,4,5,6' format",'query':" Provide text based search"})
     @api.marshal_list_with(product_item, envelope='data')
     def get(self):
         """List all registered product_items"""
         vendor_id = request.args.get('vendor_id')
         product_ids = request.args.get('product_ids')
+        query = request.args.get("query")
+        if vendor_id and query:
+            return get_query_vendor_product_items(vendor_id,query)
         if product_ids:
             return get_all_cart_product_items(product_ids)
         if vendor_id:
