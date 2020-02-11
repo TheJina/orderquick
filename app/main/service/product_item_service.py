@@ -46,7 +46,7 @@ def get_all_cart_product_items(product_ids):
     return ProductItem.query.filter(ProductItem.id.in_(result)).all()
 
 def get_query_vendor_product_items(vendor_id,query):
-    return ProductItem.query.filter(and_(ProductItem.name.like('%'+query+'%'),ProductItem.vendorId==vendor_id)).all()
+    return ProductItem.query.filter(and_(ProductItem.name.ilike('%'+query+'%'),ProductItem.vendorId==vendor_id)).all()
 
 def get_a_product_item(id):
     return ProductItem.query.filter_by(id=id).first()

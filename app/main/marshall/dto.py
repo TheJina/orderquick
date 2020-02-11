@@ -109,13 +109,20 @@ class OrderItemDto:
     })
     
     order_history = api.model('order_history', {
-    'orderId':fields.Integer(required=True,desscription="The order_item order_id"),
+    'orderId':fields.Integer(required=True,description="The order_item order_id"),
     'vendorId':fields.String(required=True,description="The order_item vendor_id"),
     'vendorName':fields.String(required=True,description="The vendor_name"),
     'orderedAt':fields.DateTime(required=True,description="The vendor_name"),
     'orderStatus':fields.String(required=True,description="The order status"),
     'totalPrice':fields.Float(required=True,description="The total price"),
     "items": fields.List(fields.Nested(add_order_item)),  
+    })
+
+class FCMTokenDto:
+    api = Namespace('fcm_token',description='Fcm token related operations')
+
+    fcm_token = api.model('fcm_token',{
+        'token': fields.String(required=True,description="The FCM token")
     })
 
 

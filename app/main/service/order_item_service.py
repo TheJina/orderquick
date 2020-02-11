@@ -4,6 +4,7 @@ from app.main.model.product_item import ProductItem
 from app.main.model.vendor import Vendor
 from app.main.model.order import Order
 from app.main.service.order_service import get_all_customer_orders
+from sqlalchemy import desc
 
 
 def save_new_order_item(id,data):
@@ -38,7 +39,7 @@ def get_all_order_order_items(customer_id):
                          itemDesc=p.product_item.desc,
                          itemPrice=p.product_item.price
                          ) for p in o.order_items])
-                               for o , v in db.session.query(Order,Vendor).filter(Order.vendor_id == Vendor.id , Order.customer_id == customer_id).all() ]
+                               for o , v in db.session.query(Order,Vendor).filter(Order.vendor_id == Vendor.id , Order.customer_id == customer_id).order_by(desc(Order.created_at)).all() ]
     
     
     return response

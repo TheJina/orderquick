@@ -17,6 +17,8 @@ flask-uploads = "*"
 psycopg2 = "*"
 geoalchemy2 = "*"
 flask-cors = "*"
+flask-redis = "*"
+flask-and-redis = "*"
 
 [requires]
 python_version = "3.6"
