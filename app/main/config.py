@@ -12,6 +12,8 @@ class Config:
 class DevelopmentConfig(Config):
     # uncomment the line below to use postgres
     SQLALCHEMY_DATABASE_URI = postgres_local_base
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    UPLOADED_IMAGES_DEST = os.path.join("static", "images")
     #SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask_boilerplate_main.db')
     REDIS_URL='redis:/localhost:6379/0'
 
@@ -28,6 +30,7 @@ class ProductionConfig(Config):
     DEBUG = False
     # uncomment the line below to use postgres
     SQLALCHEMY_DATABASE_URI = postgres_local_base
+    UPLOADED_IMAGES_DEST = os.path.join("static", "images")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     REDIS_URL='redis://localhost:6379/0'
 
