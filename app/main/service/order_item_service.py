@@ -52,7 +52,7 @@ def get_all_vendor_order_items(vendor_id,status):
             userName=c.name,
             orderedAt=o.created_at,
             orderStatus=o.status,
-            address=c.address,
+            address=c.address + ';' + c.location,
             contact=c.contact,
             latitude=c.latitude,
             longitude=c.longitude,
