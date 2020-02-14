@@ -18,12 +18,12 @@ def save_new_product_item(data):
 def update_product_item(data,id):
     product_item = ProductItem.query.filter_by(id=id).first()
     if product_item:
-        product_item.name=data['name'],
-        product_item.url=data['url'],
-        product_item.desc=data['desc'],
-        product_item.price=data['price'],
-        product_item.available=data['available'],
-        product_item.vendorId=data['vendorId'],
+        product_item.name=data['name']
+        product_item.url=data['url']
+        product_item.desc=data['desc']
+        product_item.price=data['price']
+        product_item.available=data['available']
+        product_item.vendorId=data['vendorId']
         update_changes()
         return product_item
 
