@@ -1,6 +1,7 @@
 from app.main import db
 from app.main.model.order import Order
 from app.main.model.customer import Customer
+from app.main.model.vendor import Vendor
 from app.main import redis_client
 from pyfcm import FCMNotification
 import os
@@ -13,6 +14,12 @@ def save_new_order(data):
         vendor_id=data['vendor_id'],
     )
     save_changes(new_order)
+    vendor_data = Vendor.query.filter_by(id=data['vendor_id']).first()
+    registration_id=redis_client.get(vendor_data.fuid_email).decode('utf-8')
+    message_title = "Order No. "+id
+    message_body = "Hi, You have a new Order"
+    push_service.notify_single_device(registration_id=registration_id, message_title=message_title, message_body=message_body)
+
     return new_order
     
 
