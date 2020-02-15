@@ -19,6 +19,7 @@ geoalchemy2 = "*"
 flask-cors = "*"
 flask-redis = "*"
 flask-and-redis = "*"
+pyfcm = "*"
 
 [requires]
 python_version = "3.6"

@@ -1,6 +1,8 @@
 from app.main import db
 from app.main.model.order import Order
-
+from app.main.model.customer import Customer
+from app.main import redis_client
+from app.main import push_service
 
 def save_new_order(data):
     new_order = Order(
@@ -19,6 +21,12 @@ def update_order(data,id):
         order.customer_id = data['customer_id']
         order.vendor_id=data['vendor_id']
         update_changes()
+        customer_data = Customer.query.filter_by(id=data['customer_id']).first()
+        registration_id=redis_client.get(customer_data.fuid_email).decode('utf-8')
+        message_title = "Order No. "+id
+        message_body = "Hi, Your Order is  "+data['status']
+        push_service.notify_single_device(registration_id=registration_id, message_title=message_title, message_body=message_body)
+
         return order
 
 def get_all_orders():
