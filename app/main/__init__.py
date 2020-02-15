@@ -6,7 +6,6 @@ from flask_cors import CORS
 from flask_redis import FlaskRedis
 from flask_uploads import configure_uploads, patch_request_class
 from app.main.libs.image_helper import IMAGE_SET
-from pyfcm import FCMNotification
 from .config import config_by_name
 
 db = SQLAlchemy()
