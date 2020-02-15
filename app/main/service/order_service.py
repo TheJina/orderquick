@@ -2,7 +2,7 @@ from app.main import db
 from app.main.model.order import Order
 from app.main.model.customer import Customer
 from app.main import redis_client
-from app.main import push_service
+push_service = FCMNotification(api_key=os.environ['FIREBASE_API_KEY'])
 
 def save_new_order(data):
     new_order = Order(

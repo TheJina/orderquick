@@ -12,7 +12,6 @@ from .config import config_by_name
 db = SQLAlchemy()
 flask_bcrypt = Bcrypt()
 redis_client = FlaskRedis()
-push_service = FCMNotification(api_key=os.environ['FIREBASE_API_KEY'])
 def create_app(config_name):
     app = Flask(__name__)
     CORS(app)
