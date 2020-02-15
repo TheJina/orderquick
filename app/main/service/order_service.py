@@ -15,10 +15,10 @@ def save_new_order(data):
     )
     save_changes(new_order)
     vendor_data = Vendor.query.filter_by(id=data['vendor_id']).first()
-    registration_id=redis_client.get(vendor_data.fuid_email).decode('utf-8')
+    registration_id=redis_client.get(customer_data.fuid_phone) if not None else redis_client.get(customer_data.fuid_email)
     message_title = "Order No. "+ str(new_order.id)
     message_body = "Hi, You have a new Order"
-    push_service.notify_single_device(registration_id=registration_id, message_title=message_title, message_body=message_body)
+    push_service.notify_single_device(registration_id=registration_id.decode('utf-8'), message_title=message_title, message_body=message_body)
 
     return new_order
     
@@ -31,11 +31,10 @@ def update_order(data,id):
         order.vendor_id=data['vendor_id']
         update_changes()
         customer_data = Customer.query.filter_by(id=data['customer_id']).first()
-        registration_id=redis_client.get(customer_data.fuid_phone).decode('utf-8')
-        print(registration_id)
+        registration_id=redis_client.get(customer_data.fuid_phone) if not None else redis_client.get(customer_data.fuid_email)
         message_title = "Order No. "+id
         message_body = "Hi, Your Order is  "+data['status']
-        push_service.notify_single_device(registration_id=registration_id, message_title=message_title, message_body=message_body)
+        push_service.notify_single_device(registration_id=registration_id.decode('utf-8'), message_title=message_title, message_body=message_body)
 
         return order
 
