@@ -31,7 +31,7 @@ def update_order(data,id):
         order.vendor_id=data['vendor_id']
         update_changes()
         customer_data = Customer.query.filter_by(id=data['customer_id']).first()
-        registration_id=redis_client.get(customer_data.fuid_email).decode('utf-8')
+        registration_id=redis_client.get(customer_data.fuid_phone).decode('utf-8')
         print(registration_id)
         message_title = "Order No. "+id
         message_body = "Hi, Your Order is  "+data['status']
