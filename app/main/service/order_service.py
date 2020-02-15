@@ -15,9 +15,9 @@ def save_new_order(data):
 def update_order(data,id):
     order = Order.query.filter_by(id=id).first()
     if order:
-        order.status=data['status'],
-        order.customer_id = data['customer_id'],
-        order.vendor_id=data['vendor_id'],
+        order.status=data['status']
+        order.customer_id = data['customer_id']
+        order.vendor_id=data['vendor_id']
         update_changes()
         return order
 

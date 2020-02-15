@@ -31,13 +31,13 @@ def save_new_customer(data):
 def update_customer(data,id):
     customer = Customer.query.filter(or_(Customer.fuid_email==id,Customer.fuid_phone==id)).first()
     if customer:
-        customer.name=data['name'],
-        customer.contact=data['contact'],
-        customer.address=data['address'],
-        customer.longitude=data['longitude'],
-        customer.latitude=data['latitude'],
-        customer.url=data['url'],
-        customer.geo = 'POINT({} {})'.format(data['longitude'],data['latitude']),
+        customer.name=data['name']
+        customer.contact=data['contact']
+        customer.address=data['address']
+        customer.longitude=data['longitude']
+        customer.latitude=data['latitude']
+        customer.url=data['url']
+        customer.geo = 'POINT({} {})'.format(data['longitude'],data['latitude'])
         customer.location = data['location']
         update_changes()
         return customer

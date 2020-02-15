@@ -31,15 +31,15 @@ def save_new_vendor(data):
 def update_vendor(data,id):
     vendor = Vendor.query.filter_by(id=id).first()
     if vendor:
-        vendor.name=data['name'],
-        vendor.contact=data['contact'],
-        vendor.address=data['address'],
-        vendor.longitude=data['longitude'],
-        vendor.latitude=data['latitude'],
-        vendor.geo = 'POINT({} {})'.format(data['longitude'],data['latitude']),
-        vendor.url=data['url'],
-        vendor.desc=data['desc'],
-        vendor.location=data['location'],
+        vendor.name=data['name']
+        vendor.contact=data['contact']
+        vendor.address=data['address']
+        vendor.longitude=data['longitude']
+        vendor.latitude=data['latitude']
+        vendor.geo = 'POINT({} {})'.format(data['longitude'],data['latitude'])
+        vendor.url=data['url']
+        vendor.desc=data['desc']
+        vendor.location=data['location']
         update_changes()
         return vendor
 
