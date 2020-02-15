@@ -36,7 +36,6 @@ def update_customer(data,id):
         customer.address=data['address']
         customer.longitude=data['longitude']
         customer.latitude=data['latitude']
-        customer.url=data['url']
         customer.geo = 'POINT({} {})'.format(data['longitude'],data['latitude'])
         customer.location = data['location']
         update_changes()

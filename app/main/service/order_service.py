@@ -32,6 +32,7 @@ def update_order(data,id):
         update_changes()
         customer_data = Customer.query.filter_by(id=data['customer_id']).first()
         registration_id=redis_client.get(customer_data.fuid_email).decode('utf-8')
+        print(registration_id)
         message_title = "Order No. "+id
         message_body = "Hi, Your Order is  "+data['status']
         push_service.notify_single_device(registration_id=registration_id, message_title=message_title, message_body=message_body)
