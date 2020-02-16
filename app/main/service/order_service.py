@@ -2,6 +2,7 @@ from app.main import db
 from app.main.model.order import Order
 from app.main.model.customer import Customer
 from app.main.model.vendor import Vendor
+from sqlalchemy import desc
 from app.main import redis_client
 from pyfcm import FCMNotification
 import os
