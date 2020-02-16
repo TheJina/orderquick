@@ -8,7 +8,7 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     status = db.Column(db.String(16),default="New Order",nullable=False)
     created_at = db.Column(db.DateTime,server_default=func.now())
-    updated_at = db.Column(db.DateTime,server_default=None,onupdate=func.now())
+    updated_at = db.Column(db.DateTime,server_default=func.now(),onupdate=func.now())
     customer_id = db.Column(db.Integer,db.ForeignKey("customer.id"))
     vendor_id = db.Column(db.Integer,db.ForeignKey("vendor.id"))
     customer = db.relationship("Customer",back_populates="customer_orders")

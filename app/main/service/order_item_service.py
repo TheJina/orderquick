@@ -40,7 +40,7 @@ def get_all_order_order_items(customer_id):
                          itemDesc=p.product_item.desc,
                          itemPrice=p.product_item.price
                          ) for p in o.order_items])
-                               for o , v in db.session.query(Order,Vendor).filter(Order.vendor_id == Vendor.id , Order.customer_id == customer_id).order_by(desc(Order.created_at)).all() ]
+                               for o , v in db.session.query(Order,Vendor).filter(Order.vendor_id == Vendor.id , Order.customer_id == customer_id).order_by(desc(Order.updated_at)).all() ]
     
     
     return response
@@ -61,7 +61,7 @@ def get_all_vendor_order_items(vendor_id,status):
                          itemDesc=p.product_item.desc,
                          itemPrice=p.product_item.price
                          ) for p in o.order_items])
-                               for o , c in db.session.query(Order,Customer).filter(Order.vendor_id == vendor_id ,Order.customer_id == Customer.id , Order.status == status).order_by(desc(Order.created_at)).all() ]
+                               for o , c in db.session.query(Order,Customer).filter(Order.vendor_id == vendor_id ,Order.customer_id == Customer.id , Order.status == status).order_by(desc(Order.updated_at)).all() ]
     
     
     return response

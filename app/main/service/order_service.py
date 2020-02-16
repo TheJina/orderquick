@@ -47,10 +47,10 @@ def get_all_orders():
     return Order.query.all()
 
 def get_all_vendor_orders(vendor_id):
-    return Order.query.filter_by(vendor_id=vendor_id).order_by(desc(Order.created_at)).all()
+    return Order.query.filter_by(vendor_id=vendor_id).all()
 
 def get_all_customer_orders(customer_id):
-    return Order.query.filter_by(customer_id=customer_id).order_by(desc(Order.created_at)).all()
+    return Order.query.filter_by(customer_id=customer_id).all()
 
 def get_a_order(id):
     return Order.query.filter_by(id=id).first()
