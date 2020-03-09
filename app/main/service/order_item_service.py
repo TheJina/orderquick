@@ -5,6 +5,7 @@ from app.main.model.vendor import Vendor
 from app.main.model.customer import Customer
 from app.main.model.order import Order
 from app.main.service.order_service import get_all_customer_orders
+from app.main.service.product_item_service import get_a_product_item
 from sqlalchemy import desc
 
 
@@ -13,6 +14,7 @@ def save_new_order_item(id,data):
         order_id = id,
         product_item_id=data['product_item_id'],
         quantity=data['quantity'],
+        price = get_a_product_item(data['product_item_id'])['price']
     )
     return new_order_item
 
