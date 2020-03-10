@@ -14,7 +14,7 @@ def save_new_order_item(id,data):
         order_id = id,
         product_item_id=data['product_item_id'],
         quantity=data['quantity'],
-        price = get_a_product_item(data['product_item_id'])['price']
+        price = get_a_product_item(data['product_item_id']).price
     )
     return new_order_item
 
